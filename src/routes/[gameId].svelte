@@ -5,7 +5,6 @@
 		const stats = await fetchBoxscores(page.params.gameId);
 		return {
 			props: {
-				currentIdx: Number.parseInt(page.query.get('time') ?? '0'),
 				gameId: page.params.gameId,
 				stats
 			}
@@ -14,14 +13,16 @@
 </script>
 
 <script>
+	import { page } from '$app/stores';
 	import Header from '$lib/Header.svelte';
 	import Progress from '$lib/Progress.svelte';
 	import TeamBox from '$lib/TeamBox.svelte';
 	import FloatingActions from '$lib/FloatingActions.svelte';
 
-	export let currentIdx;
 	export let gameId;
 	export let stats;
+
+	$: currentIdx = Number.parseInt($page.query.get('time') ?? '0');
 
 	$: sorted = stats.sort(compareGameTime);
 	$: currentData = sorted[currentIdx]?.data;
