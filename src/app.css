@@ -1,0 +1,14 @@
+/* Write your global styles here, in PostCSS syntax */
+
+@import '@fontsource/fira-mono';
+
+@tailwind base;
+
+body {
+	min-height: 100vh;
+	margin: 0;
+}
+
+@tailwind components;
+
+@tailwind utilities;
